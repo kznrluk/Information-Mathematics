@@ -1,6 +1,6 @@
 const GCD = (x, y) => !(x % y) ? y : GCD(y, x % y);
 
-const GenerateFormulaOfGCD = (x, y) => {
+const generateFormulaOfGCD = (x, y) => {
     const histry = [];
     while(1){
         const result = [x, y, Math.floor(x / y), x % y];
@@ -12,7 +12,7 @@ const GenerateFormulaOfGCD = (x, y) => {
     return histry.map((value) => [value[3], value[0], value[2], value[1]]);
 }
 
-const getSolution = (a, b, n) => {
+const getSolutionOfEquation = (a, b, n) => {
     for(let i = 0; i * a <= 10000000000; i++) {
         if((n - (i * a)) % b == 0) {
             return [i, (n - (i * a)) / b];
@@ -21,7 +21,7 @@ const getSolution = (a, b, n) => {
     return null;
 }
 
-const solution2 = (GCDresult) => {
+const getParticularSolution = (GCDresult) => {
     GCDresult = GCDresult.reverse();
     // 自明である一番上を削除
     GCDresult.shift();
@@ -41,9 +41,8 @@ const solution2 = (GCDresult) => {
         }
         const solutions = getSolution(a, b, answer);
         console.log(`${answer} = ${a} * ${solutions[0]} + ${b} * ${solutions[1]}`);
-        
-        
     });
+    return [a, b];
 }
 
 console.log(GenerateFormulaOfGCD(1428, 1105))
