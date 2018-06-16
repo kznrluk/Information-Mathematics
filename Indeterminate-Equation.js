@@ -23,7 +23,7 @@ const getSolution = (a, b, n) => {
 
 const solution2 = (GCDresult) => {
     GCDresult = GCDresult.reverse();
-    // 一番上を削除
+    // 自明である一番上を削除
     GCDresult.shift();
 
     const answer = GCDresult[0][0];
