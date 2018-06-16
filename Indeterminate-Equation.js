@@ -1,5 +1,10 @@
 const GCD = (x, y) => !(x % y) ? y : GCD(y, x % y);
 
+
+/*
+ * generateFormulaOfGCD (int, int)
+ * 2つの数を受け取り、GCDを算出するまでの過程を2次元配列で返します。
+ */
 const generateFormulaOfGCD = (x, y) => {
     const histry = [];
     while(1){
@@ -12,15 +17,24 @@ const generateFormulaOfGCD = (x, y) => {
     return histry.map((value) => [value[3], value[0], value[2], value[1]]);
 }
 
-const getSolutionOfEquation = (a, b, n) => {
+
+/*
+ * getSolutionOfEquation (int a, int b, int c)
+ * ax + by = c の方程式の解を返します。存在しない場合はnullを返します。
+ */
+const getSolutionOfEquation = (a, b, c) => {
     for(let i = 0; i * a <= 10000000000; i++) {
-        if((n - (i * a)) % b == 0) {
-            return [i, (n - (i * a)) / b];
+        if((c - (i * a)) % b == 0) {
+            return [i, (c - (i * a)) / b];
         }
     }
     return null;
 }
 
+/*
+ * getParticularSolution (Array)
+ * generateFormulaOfGCD()の結果を拡張ユークリッド互除法で解き、特殊解を返します。
+ */
 const getParticularSolution = (GCDresult) => {
     GCDresult = GCDresult.reverse();
     // 自明である一番上を削除
@@ -39,14 +53,9 @@ const getParticularSolution = (GCDresult) => {
         } else {
             a = array[i][1]
         }
-        const solutions = getSolution(a, b, answer);
+        const solutions = getSolutionOfEquation(a, b, answer);
         console.log(`${answer} = ${a} * ${solutions[0]} + ${b} * ${solutions[1]}`);
     });
     return [a, b];
 }
-
-console.log(GenerateFormulaOfGCD(1428, 1105))
-
-console.log(getSolution(51, 136, 17));
-
-solution2(GenerateFormulaOfGCD(1428, 1105))
+console.log(getParticularSolution(generateFormulaOfGCD(1428, 1105)));
