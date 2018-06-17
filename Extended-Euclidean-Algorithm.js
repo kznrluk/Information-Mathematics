@@ -7,7 +7,7 @@
  * extGCD (int a, int b)
  * この関数はextendedEuclideanAlgorithm()の短縮版です。
  */
-const extGCD = (a, b) => !b ? [1, 0, a] : (x => [x[1], x[0]-x[1]*Math.floor(a/b), x[2]])(extGCD(b, a%b));
+const extGCD = (a, b) => !b ? [1, 0, a] : (x => [x[1], x[0]-x[1]*((a/b)|0), x[2]])(extGCD(b, a%b));
 
 /*
  * extendedEuclideanAlgorithm (int a, int b)
