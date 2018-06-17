@@ -1,5 +1,5 @@
 /*
- * Euclid.js
+ * Euclidean-Algorithm.js
  * ユークリッドの互除法を利用しGCDを求めます。
  */
 
