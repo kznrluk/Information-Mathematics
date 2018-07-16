@@ -1,0 +1,157 @@
+.RSACrypt {
+    display: flex;
+    width: 920px;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 8.7px;
+    background-color: rgb(250,250,250)
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px
+}
+
+.title {
+    font-weight: 200;
+    font-size: 20px;
+    border-bottom: solid;
+    border-color: rdb(240,240,240);
+    border-width: 1px;
+}
+
+.title h1 {
+    color: #fd746c;
+    margin: 10px;
+    font-family: 'lato';
+}
+
+.title p {
+    margin: 10px;
+    font-family: 'Sawarabi Mincho';
+}
+
+.InputPlainText {
+    width: 92%;
+}
+
+.InputPlainText input {
+    width: 100%;
+    height: 40px;
+}
+
+.ViewResult {
+    font-family: 'Ubuntu Mono';
+    font-size: 22px;
+    width: 100%;
+}
+
+.Unicode {
+    background-color: rgb(131, 218, 221);
+    color: rgb(80,80,80);
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding : 10px;
+    width: 100%;
+    height: 140px;
+    position: relative;
+}
+
+.Unicode span {
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 100px;
+}
+
+.Crypted {
+    background-color: rgb(221, 152, 131);
+    color: rgb(80,80,80);
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding : 10px;
+    width: 100%;
+    height: 180px;
+    position: relative;
+}
+
+.Crypted span {
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 100px;
+}
+
+.InputPrimeNumber label {
+    display: flex;
+    margin: 10px;
+    width: 100%;
+}
+
+.prime {
+    width: 100px;
+    text-align: center;
+    flex-basis: auto;
+}
+
+.input {
+    width: 75px;
+    height: 35px;
+    text-align: center;
+}
+
+.Decrypted {
+    background-color: rgb(131, 146, 221);
+    color: rgb(80,80,80);
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding : 10px;
+    width: 100%;
+    height: 140px;
+    position: relative;
+}
+
+.Decrypted span {
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 100px;
+}
+
+.PlainText {
+    background-color: rgb(164, 221, 131);
+    color: rgb(80,80,80);
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding : 10px;
+    width: 100%;
+    height: 120px;
+    position: relative;
+}
+
+.PlainText span {
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 100px;
+}

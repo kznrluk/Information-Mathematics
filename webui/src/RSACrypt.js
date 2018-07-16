@@ -1,8 +1,8 @@
 import React from 'react';
 import { generateRSAKeys, encrypt, decrypt } from './lib/RSA-Crypt.js';
-import BigNumber from 'bignumber.js';
+import './RSACrypt.css';
 
-const isPrimeNum = num => BigNumber(2).pow(num) % num !== 2;
+// const isPrimeNum = num => BigNumber(2).pow(num) % num !== 2;
 
 export default class RSACrypt extends React.Component {
     constructor(props){
@@ -15,7 +15,8 @@ export default class RSACrypt extends React.Component {
             isKeysReady: false,
             plainText: "Hello, JavaScript.",
             plainTextArray: [],
-            encryptedArray: []
+            encryptedArray: [],
+            decryptedArray: []
         };
 
         this.onPrimeNumChanged = this.onPrimeNumChanged.bind(this);
@@ -49,16 +50,23 @@ export default class RSACrypt extends React.Component {
     onPlainTextChanged(text) {
         const plainTextArray = text.split("").map(v => v.charCodeAt());
         const encryptedArray = encrypt(plainTextArray, this.state.publicKey);
-        this.setState(Object.assign({}, this.state, { plainText: text, plainTextArray: plainTextArray, encryptedArray }));
+        const decryptedArray = decrypt(encryptedArray, this.state.secretKey);
+        this.setState(Object.assign({}, this.state, { plainText: text, plainTextArray: plainTextArray, encryptedArray, decryptedArray }));
     }
 
     render() {
         console.log(this.state)
         return (
-            <div>
-                <InputPrimeNumber p={this.state.p} q={this.state.q} onPrimeNumChanged={this.onPrimeNumChanged}/>
-                <InputPlainText plainText={this.state.plainText} onPlainTextChanged={this.onPlainTextChanged}/>
-                <ViewResult plainText={this.state.plainText} encryptedArray={this.state.encryptedArray}/>
+            <div className='RSACrypt'>
+                <div className='title'>
+                    <h1>RSA-Crypt.js</h1>
+                    <p>入力された文字列を暗号化します。</p>
+                </div>
+                <div className='main'>
+                    <InputPlainText plainText={this.state.plainText} onPlainTextChanged={this.onPlainTextChanged}/>
+                    <InputPrimeNumber p={this.state.p} q={this.state.q} onPrimeNumChanged={this.onPrimeNumChanged}/>
+                    <ViewResult plainText={this.state.plainText} encryptedArray={this.state.encryptedArray} decryptedArray={this.state.decryptedArray}/>
+                </div>
             </div>
         )
     }
@@ -77,11 +85,9 @@ class InputPlainText extends React.Component {
     
     render() {
         return (
-            <div>
+            <div className="InputPlainText" >
                 <form>
-                    <label>
-                        InputPlainText: <input type="text" value={this.props.plainText} onChange={this.handleChange} name="plainText" />
-                    </label>
+                    <input type="text" value={this.props.plainText} onChange={this.handleChange} name="plainText" />
                 </form>
             </div>
         )
@@ -106,11 +112,11 @@ class InputPrimeNumber extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='InputPrimeNumber'>
                 <form>
                     <label>
-                        P: <input type="number" value={this.props.p} onChange={this.handleChange} name="p" />
-                        Q: <input type="number" value={this.props.q} onChange={this.handleChange} name="q" />
+                        <div className='prime'>: P :<br/><input type="text" value={this.props.p} onChange={this.handleChange} name="p" className="input"/></div>
+                        <div className='prime'>: Q :<br/><input type="text" value={this.props.q} onChange={this.handleChange} name="q" className="input"/></div>
                     </label>
                 </form>
             </div>
@@ -121,9 +127,10 @@ class InputPrimeNumber extends React.Component {
 class ViewResult extends React.Component {
     render() {
         return (
-            <div>
+            <div className="ViewResult">
                 <ViewStringsAsArray plainText={this.props.plainText}/>
                 <ViewCryptedText encryptedArray={this.props.encryptedArray} />
+                <ViewDecryptedText decryptedArray={this.props.decryptedArray} />
             </div>
         )
     }
@@ -138,9 +145,8 @@ const ViewStringsAsArray = props => {
     });
 
     return (
-        <div>
-            Unicode: <br />
-            {viewText}
+        <div className='Unicode'>
+            <span>Unicode</span> {viewText}
         </div>
     )
 }
@@ -151,9 +157,29 @@ const ViewCryptedText = props => {
         viewText = `${viewText} ["${text}"]`
     });
     return (
+        <div className='Crypted'>
+            <span>CryptedText</span> {viewText}
+        </div>
+    )
+}
+
+const ViewDecryptedText = props => {
+    let viewText = '';
+    let plainText = '';
+    props.decryptedArray.forEach(text => {
+        viewText = `${viewText} ["${text}"]`
+    });
+    props.decryptedArray.forEach(text =>{
+        plainText += String.fromCharCode(text)
+    });
+    return (
         <div>
-            CryptedText: <br />
-            {viewText}
+            <div className="Decrypted">
+                <span>DecryptedText</span> {viewText}
+            </div>
+            <div className="PlainText">
+                <span>PlainText</span> {plainText}
+            </div>
         </div>
     )
 }

@@ -48,7 +48,7 @@ export const generateRSAKeys = (p, q) => {
 }
 
 // 簡略化用 テキスト <==> CharCodeArray変換関数
-const convertTextToIntArray = string => string.split("").map(v => v.charCodeAt());
+// const convertTextToIntArray = string => string.split("").map(v => v.charCodeAt());
 // const convertIntArrayToText = array => array.map(v => String.fromCharCode(v)).join("");
 
 /*
